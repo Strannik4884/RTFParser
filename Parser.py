@@ -65,18 +65,18 @@ def Algorithm(paragraphs, text, filename):
     er = 0
     try:
         for i in range(len(paragraphs)-1):
-            block = Get_Block(paragraphs[0], paragraphs[1], text)
-            paragraph = Paragraph(paragraphs[0],
+            block = Get_Block(paragraphs[i], paragraphs[i+1], text)
+            paragraph = Paragraph(paragraphs[i],
                         Get_String(block), '', '')
             if(i == 0):
                 try:
                     profession = (re.search(r'([а-я-А-Я-\ ]+) относится', 
-                                            paragraph.context['1.'])).group(1)
+                                            paragraph.context[0]['text'])).group(1)
                 except:
                     profession = ''
                 try:    
                     appointed = (re.search(r'производится приказом ([а-я-А-Я-\ ]+)', 
-                                            paragraph.context['3.'])).group(1)
+                                            paragraph.context[2]['text'])).group(1)
                 except:
                     appointed = ''
             paragraph.set_profession(profession)
@@ -100,7 +100,7 @@ def Algorithm(paragraphs, text, filename):
 files = os.listdir(r".")
 #Проходим по всем файлам и собираем блоки
 for i in files:
-    file = open('001.rtf','r')
+    file = open(i,'r')
     text = rtf_to_text(file.read())
     try:
         paragraphs = [r'Общие положения', r'Должностные обязанности',
