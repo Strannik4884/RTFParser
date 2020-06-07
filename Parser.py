@@ -6,7 +6,7 @@ Created on Fri Jun  5 19:20:30 2020
 """
 
 import os
-os.chdir(r".spyder-py3\\rosAtom\\data")
+os.chdir(r".")
 from striprtf.striprtf import rtf_to_text
 import re
 import numpy as np
@@ -107,5 +107,5 @@ for i in files:
                       r'Права', r'Ответственность', 'С инструкцией ознакомлен']
         Algorithm(paragraphs, text, i)
     except:
-      print('Файл: ' + i + ' нелязя преобразовать')
+      print('Файл: ' + i + ' нельзя преобразовать')
     file.close()
